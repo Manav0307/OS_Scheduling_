@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Scheduling Algorithm Visualizer</title>
+    <meta name="description" content="Stunning premium visualization of FCFS and Round Robin OS scheduling algorithms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <header class="glass-header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>OS Scheduler Pro</h1>
+            </div>
+            <p>Visualize CPU scheduling with unparalleled clarity</p>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Settings Panel -->
+            <section class="glass-panel settings-panel">
+                <h2>Configuration</h2>
+                
+                <div class="input-group">
+                    <label for="algorithm">Algorithm</label>
+                    <select id="algorithm">
+                        <option value="fcfs">First Come First Serve (FCFS)</option>
+                        <option value="rr">Round Robin (RR)</option>
+                    </select>
+                </div>
+
+                <div class="input-group rr-settings" id="rr-settings" style="display: none;">
+                    <label for="timeQuantum">Time Quantum</label>
+                    <input type="number" id="timeQuantum" min="1" value="2">
+                </div>
+                
+                <div class="processes-header">
+                    <h3>Processes</h3>
+                    <button id="add-process-btn" class="btn secondary">
+                        <span>+ Add</span>
+                    </button>
+                </div>
+
+                <div class="process-list" id="process-list">
+                    <!-- Dynamic processes will be injected here -->
+                </div>
+
+                <button id="run-simulation-btn" class="btn primary simulate-btn">
+                    Run Simulation
+                </button>
+            </section>
+
+            <!-- Results Panel -->
+            <section class="results-panel">
+                <div class="glass-panel metrics-panel">
+                    <h2>Gantt Chart</h2>
+                    <div class="gantt-container" id="gantt-chart">
+                        <div class="gantt-placeholder">Run a simulation to generate Gantt chart</div>
+                    </div>
+                </div>
+
+                <div class="glass-panel table-panel">
+                    <h2>Execution Table</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>PID</th>
+                                    <th>Arrival</th>
+                                    <th>Burst</th>
+                                    <th>Completion</th>
+                                    <th>Turnaround</th>
+                                    <th>Waiting</th>
+                                </tr>
+                            </thead>
+                            <tbody id="result-tbody">
+                                <!-- Results injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Template for process row -->
+    <template id="process-row-template">
+        <div class="process-row">
+            <div class="process-id">P<span class="pid-display"></span></div>
+            <div class="process-inputs">
+                <input type="number" class="process-arrival" placeholder="Arrival" min="0" required>
+                <input type="number" class="process-burst" placeholder="Burst" min="1" required>
+                <button type="button" class="remove-process-btn" title="Remove Process">×</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
